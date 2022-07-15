@@ -7,7 +7,7 @@ const Home = () => {
         <>
             this is home page
             <h1 className="col-md-6 bg-light p-5 fw-bolder text-dark">Hack The Web - A Platform for Aspiring Programmers</h1>
-            <Link to="/dashboard">
+            <Link to="/contests">
                 <Button variant="danger py-2 px-5 my-4 fw-bolder text-light"><i className="fas fa-terminal"></i> Compete</Button>
             </Link>
 

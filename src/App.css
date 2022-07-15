@@ -1,70 +1,77 @@
-
-body{
+body {
     background-color: #F2F2F2;
     font-family: 'Trebuchet MS', sans-serif;
 
-    background: url("./bg-wallpaper.jpg");
+    background: url("./Assets/bg-wallpaper.jpg");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     /* min-height: 100vh; */
 }
-a{
+
+a {
     text-decoration: none;
 }
-nav a{
+
+nav a {
     color: #F2F2F2;
     /* padding: 0.375rem 0.75rem; */
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-nav a:hover{
+
+nav a:hover {
     color: #000;
     background-color: #F2F2F2;
     border-color: #F2F2F2;
 }
 
-.box{
-    background-color: rgba(242,242,242,0.9);
+.box {
+    background-color: rgba(242, 242, 242, 0.9);
     border-radius: 0.25rem;
     /* box-shadow: -5px -5px 5px #F25244, 5px 5px 5px #506AD4; */
     box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
 
 
 }
-.button-bounce{
+
+.button-bounce {
     transition: 0.25s !important;
 }
-.button-bounce:hover{
+
+.button-bounce:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 5px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 /* SCROLL BAR THEME */
-*::-webkit-scrollbar{
-	width: 10px;
-	background-color: #506AD4;
-  }
-*::-webkit-scrollbar-thumb{
-background-color: #F25244;
-/* border-radius: 5px; */
+*::-webkit-scrollbar {
+    width: 10px;
+    background-color: #506AD4;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #F25244;
+    /* border-radius: 5px; */
 }
 
 
-.home-box ul{
+.home-box ul {
     list-style-type: none;
     margin-top: 2rem;
 }
-.home-box li{
+
+.home-box li {
     font-size: larger;
     line-height: 200%;
 }
-.home-box ul li::before{
+
+.home-box ul li::before {
     content: ">";
     color: #506AD4;
     font-weight: bold;
-    display: inline-block; 
+    display: inline-block;
     width: 1em;
     margin-left: -1em;
 }
@@ -73,74 +80,74 @@ background-color: #F25244;
 
 
 /* SOCIAL ICONS */
-.wrapper{
-	color: #000;
+.wrapper {
+    color: #000;
 }
+
 .button-social {
-	float: left;
- 	 margin: 0 10px;
-	width: 40px;
-	height: 40px;
-	cursor: pointer;
-	background: #fff;
-	overflow: hidden;
-	border-radius: 50px;
-	transition: all 0.3s ease-in-out;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    float: left;
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .button-social span {
-	font-size: 20px;
-	font-weight: 500;
-	line-height: 40px;
-	margin-left: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-left: 5px;
 }
 
 .button-social:hover {
-	width: 160px;
+    width: 160px;
 }
 
 .button-social:nth-child(1):hover .icon {
-	background: #e1306c;
+    background: #e1306c;
 }
 
 .button-social:nth-child(2):hover .icon {
-	background: #0e76a8;
+    background: #0e76a8;
 }
 
 
 .button-social:nth-child(3):hover .icon {
-	background: #333;
+    background: #333;
 }
 
 .button-social:nth-child(1) span {
-	color: #e1306c;
+    color: #e1306c;
 }
 
 .button-social:nth-child(2) span {
-	color: #0e76a8;
+    color: #0e76a8;
 }
 
 .button-social:nth-child(3) span {
-	color: #333;
+    color: #333;
 }
 
 .button-social .icon {
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	border-radius: 50%;
-	display: inline-block;
-	transition: all 0.3s ease-in-out;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
 }
 
 .button-social .icon i {
-	font-size: 25px;
-	line-height: 40px;
-	transition: all 0.3s ease-in-out;
+    font-size: 25px;
+    line-height: 40px;
+    transition: all 0.3s ease-in-out;
 }
 
 .button-social:hover i {
-	color: #fff;
+    color: #fff;
 }
-

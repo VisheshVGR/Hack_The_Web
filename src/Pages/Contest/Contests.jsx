@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { query, collection, onSnapshot, doc, orderBy, updateDoc } from "firebase/firestore";
-import { db } from "./firebase-config"
+import { db } from "../../Firebase/firebase-config"
 import { Button, Card, Row, Col } from "react-bootstrap";
 
-const Dashboard = (props) => {
+const Contests = (props) => {
     // USE STATE
     const [upcomingContests, setUpcomingContests] = useState([]);
     const [expiredContests, setExpiredContests] = useState([])
@@ -18,7 +18,7 @@ const Dashboard = (props) => {
     useEffect(() => {
         if (!currUser) {
             navigate('/')
-            props.notify("You must be Signed In to access Dashboard!!!", "warning")
+            props.notify("You must be Signed In to access Contests!!!", "warning")
             return
         }
 
@@ -237,4 +237,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default Dashboard
+export default Contests

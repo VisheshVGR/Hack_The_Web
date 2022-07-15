@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Form, Row, Button, Card, Col } from "react-bootstrap"
 import { query, collection, where, onSnapshot, addDoc, serverTimestamp, deleteDoc, doc } from "firebase/firestore";
-import { db } from "./firebase-config"
+import { db } from "../../Firebase/firebase-config"
 
 
 const Host = (props) => {
