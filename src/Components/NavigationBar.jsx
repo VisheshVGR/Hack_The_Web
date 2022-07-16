@@ -9,7 +9,7 @@ const NavigationBar = ({ currUser }) => {
 
     let activeStyle = {
         fontWeight: "bolder",
-        textDecoration: "underline",
+        backgroundColor:"#ffffff33"
     };
 
     const signInWithGoogle = async () => {

@@ -145,6 +145,7 @@ const Contests = (props) => {
                             Created By : {data.organizerName}<br />
                             Start At : {data.startingDateTime}<br />
                             Ends At : {data.endingDateTime}<br />
+                            <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
                         </Card.Body>
                     </Card>
                 </Col>

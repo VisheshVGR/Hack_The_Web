@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Form, Row, Button, Card, Col } from "react-bootstrap"
-import { query, collection, where, onSnapshot, addDoc, serverTimestamp, deleteDoc, doc } from "firebase/firestore";
+import { query, collection, where, onSnapshot, addDoc, orderBy, serverTimestamp, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config"
 
 
@@ -29,6 +29,7 @@ const Host = (props) => {
             const ec = []
             querySnapshot.forEach((doc) => {
                 const data = { ...doc.data(), key: doc.id }
+                console.log(data.key)
 
                 if (new Date(doc.data().startingDateTime) > new Date()) {
                     uc.push(data)
@@ -78,6 +79,7 @@ const Host = (props) => {
                             Start At : {data.startingDateTime}<br />
                             Ends At : {data.endingDateTime}<br />
                         </Card.Body>
+                        <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
                         <Button variant="outline-danger w-75 mx-auto mb-3" onClick={() => DeleteContest(data.key)}>Delete Contest</Button>
                     </Card>
                 </Col>
@@ -96,7 +98,6 @@ const Host = (props) => {
             </div>
 
             <div className="box py-5 my-3">
-
                 <h2 className="text-center"><i className="fas fa-users"></i> Live Contests</h2>
                 <Row xs={1} sm={2} lg={3} className="g-4">
                     {liveContests && liveContests.map((msg) => <ContestCard key={msg.key} data={msg} />)}
@@ -104,7 +105,6 @@ const Host = (props) => {
             </div>
 
             <div className="box py-5 my-3">
-
                 <h2 className="text-center"><i className="fas fa-users"></i> upcoming Contests</h2>
                 <Row xs={1} sm={2} lg={3} className="g-4">
                     {upcomingContests && upcomingContests.map((msg) => <ContestCard key={msg.key} data={msg} />)}
@@ -116,7 +116,6 @@ const Host = (props) => {
                 <Row xs={1} sm={2} lg={3} className="g-4">
                     {expiredContests && expiredContests.map((msg) => <ContestCard key={msg.key} data={msg} />)}
                 </Row>
-
             </div>
 
 
