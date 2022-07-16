@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Outlet } from "react-router-dom"
 import { auth } from "./Firebase/firebase-config"
 import { onAuthStateChanged } from "firebase/auth";
 import { Container } from "react-bootstrap";
@@ -8,20 +8,21 @@ import { Container } from "react-bootstrap";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 import './Style/custom.scss';
 import './App.css';
 
 // pages
-import NavigationBar from "./Components/Navbar"
+import NavigationBar from "./Components/NavigationBar"
 import Footer from "./Components/Footer"
 import Home from "./Pages/Home/Home"
-import Contests from "./Pages/Contest/Contests"
+import AllContests from "./Pages/AllContests/AllContests"
+import CreateContest from "./Pages/CreateContest/CreateContest";
 import Host from "./Pages/Host/Host"
+import Profile from "./Pages/Profile/Profile";
+import ContestPage from "./Pages/ContestPage/ContestPage";
+import ContestStanding from "./Pages/ContestStanding/ContestStanding"
 
-
-
-function App() {
+const App = () => {
 
   // USE STATE
   const [currUser, setCurrUser] = useState(null);
@@ -47,33 +48,57 @@ function App() {
     }
   });
 
+  const WithNav = () => {
+    return (
+      <>
+        <NavigationBar currUser={currUser} />
+        <Container fluid="xxl" className="py-5">
+          <Outlet />
+        </Container>
+        <Footer />
+      </>
+    );
+  };
+
+  const WithoutNav = () => {
+    return (
+      <>
+        <div style={{ color: "white" }}>
+          <Outlet />
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
+      <Routes>
+        <Route element={<WithNav />}>
+          <Route exact path="/" element={<Home notify={notify} />} />
+          <Route exact path="/all-contests" element={<AllContests currUser={currUser} notify={notify} />} />
 
-      <NavigationBar currUser={currUser} />
-      <Container fluid="xxl" className="py-5">
-        <Routes>
-          <Route exact path="/host" element={<Host currUser={currUser} notify={notify} />}>
-          </Route>
-          <Route exact path="/contests" element={<Contests currUser={currUser} notify={notify} />}>
-          </Route>
-          <Route exact path="/" element={<Home />} notify={notify}>
-          </Route>
-        </Routes>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </Container>
-      <Footer />
+          <Route exact path="/contest-page/:contestId" element={<ContestPage notify={notify} />} />
+          <Route exact path="/contest-page/:contestId/standing/:userName" element={<ContestStanding notify={notify} />} n />
+          {/* require login */}
+          <Route exact path="/host" element={<Host currUser={currUser} notify={notify} />} />
+          <Route exact path="/profile" element={<Profile currUser={currUser} notify={notify} />} />
+          <Route exact path="/create-contest" element={<CreateContest currUser={currUser} notify={notify} />} />
+        </Route>
 
+        <Route element={<WithoutNav />}>
+        </Route>
+      </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

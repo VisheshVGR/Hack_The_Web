@@ -1,11 +1,16 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { auth } from "../Firebase/firebase-config"
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { Container, Button, Navbar } from "react-bootstrap";
 
 const NavigationBar = ({ currUser }) => {
     const provider = new GoogleAuthProvider();
+
+    let activeStyle = {
+        fontWeight: "bolder",
+        textDecoration: "underline",
+    };
 
     const signInWithGoogle = async () => {
         try {
@@ -32,9 +37,15 @@ const NavigationBar = ({ currUser }) => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end">
 
-                        <Link className="d-block px-4 py-2 my-2" to="/">Home</Link>
-                        <Link className="d-block px-4 py-2 my-2" to="/contests">Contests</Link>
-                        <Link className="d-block px-4 py-2 my-2" to="/host">Host</Link>
+                        <NavLink className="d-block px-4 py-2 my-2" style={({ isActive }) => isActive ? activeStyle : undefined} to="/">Home</NavLink>
+                        <NavLink className="d-block px-4 py-2 my-2" style={({ isActive }) => isActive ? activeStyle : undefined} to="/all-contests">Contests</NavLink>
+                        <NavLink className="d-block px-4 py-2 my-2" style={({ isActive }) => isActive ? activeStyle : undefined} to="/host">Host</NavLink>
+
+                        {currUser ?
+                            <NavLink className="d-block px-4 py-2 my-2" style={({ isActive }) => isActive ? activeStyle : undefined} to="/profile">Profile</NavLink>
+                            :
+                            <></>
+                        }
 
                         <Button variant="outline-light ms-4 my-2 button-bounce" onClick={currUser ? signOutWithGoogle : signInWithGoogle}>
                             {currUser ?
