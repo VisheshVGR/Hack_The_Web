@@ -11,6 +11,9 @@ const QuestionPage = ({ notify }) => {
     const [answers, setAnswers] = useState({})
     const [contestData, setContestData] = useState({})
 
+    const [questionIdx, setQuestionIdx] = useState(1);
+
+
 
     useEffect(() => {
 
@@ -40,10 +43,21 @@ const QuestionPage = ({ notify }) => {
         }
         getContestDataFromDb()
 
-    }, [candidateEmail, contestId, navigate, notify])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
+    const nextQuestionFunction = (submit) => {
+        let noOfQue = contestData.questionsList.length
+        console.log(noOfQue, questionIdx)
+        if (noOfQue !== (questionIdx)) {
+            setQuestionIdx(questionIdx + 1)
+        }
 
-    const Submit = async () => {
+        Submit(submit)
+    }
+
+    const Submit = async (toSubmit) => {
+        console.log(toSubmit)
         let candidateScore = 0
 
         contestData.questionsList.forEach((ques) => {
@@ -67,14 +81,16 @@ const QuestionPage = ({ notify }) => {
             participated: [...contestData.participated, newUserData]
         })
 
-        notify("Submitted", "success")
-        navigate(`/contest-page/${contestId}/standing/?email=${candidateEmail}`)
-        navigate({
-            pathname: `/contest-page/${contestId}/standing/`,
-            search: createSearchParams({
-                email: candidateEmail
-            }).toString()
-        });
+        console.log(toSubmit)
+        if (toSubmit) {
+            notify("Contest Submitted", "success")
+            navigate({
+                pathname: `/contest-page/${contestId}/standing/`,
+                search: createSearchParams({
+                    email: candidateEmail
+                }).toString()
+            });
+        }
     }
 
     return (
@@ -99,9 +115,58 @@ const QuestionPage = ({ notify }) => {
                                         Candidate EmailID : {candidateEmail}
                                     </Col>
                                 </Row>
+                                <Row>
+                                    <Col>
+                                        No. of Questions : {contestData.questionsList.length}
+                                    </Col>
+                                </Row>
                             </div>
                             <div className="p-3 pb-5">
                                 {
+                                    contestData.questionsList.map((ques, idx) => {
+                                        if (idx + 1 === questionIdx) {
+                                            return (
+                                                <>
+                                                    <p>Q{idx + 1}. {ques.questionDescription}?</p>
+                                                    <Form>
+                                                        <Form.Check
+                                                            type="radio"
+                                                            label={ques.optionOne}
+                                                            name={idx}
+                                                            onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 1 })}
+                                                        />
+                                                        <Form.Check
+                                                            type="radio"
+                                                            label={ques.optionTwo}
+                                                            name={idx}
+                                                            onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 2 })}
+                                                        />
+                                                        <Form.Check
+                                                            type="radio"
+                                                            label={ques.optionThree}
+                                                            name={idx}
+                                                            onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 3 })}
+                                                        />
+                                                        <Form.Check
+                                                            type="radio"
+                                                            label={ques.optionFour}
+                                                            name={idx}
+                                                            onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 4 })}
+                                                        />
+                                                    </Form>
+                                                    <h6 style={{ color: "grey", fontSize: "14px" }} className="my-4">(marks : {ques.marks} )</h6>
+                                                    <div className="d-flex justify-content-between w-100">
+                                                        <Button onClick={() => nextQuestionFunction()} variant="outline-success" className="" disabled={contestData.questionsList.length === idx + 1 ? true : false}>Next Question</Button>
+                                                        <Button onClick={() => nextQuestionFunction(true)} variant="danger" className="text-white px-5">Submit</Button>
+                                                    </div>
+
+
+                                                </>
+                                            )
+                                        }
+                                    })
+                                }
+                                {/* {
                                     contestData.questionsList.map((ques, idx) => {
                                         return (
                                             <>
@@ -132,6 +197,7 @@ const QuestionPage = ({ notify }) => {
                                                         onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 4 })}
                                                     />
                                                 </Form>
+                                                <h6 style={{ color: "grey", fontSize: "14px" }} className="my-4">(marks : {ques.marks} )</h6>
 
 
 
@@ -139,7 +205,7 @@ const QuestionPage = ({ notify }) => {
                                         )
                                     })
                                 }
-                                <Button onClick={Submit} variant="danger" className="text-white px-5">Submit</Button>
+                                <Button onClick={Submit} variant="danger" className="text-white px-5">Submit</Button> */}
 
                             </div>
 

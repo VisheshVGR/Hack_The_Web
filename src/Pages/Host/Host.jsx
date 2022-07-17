@@ -79,7 +79,7 @@ const Host = ({ currUser, notify }) => {
                             Ends At : {data.endingDateTime}<br />
                         </Card.Body>
                         <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
-                        <Button variant="info w-75 mx-auto mb-3" onClick={() => {console.log(window.location.href.replace("host", `contest-page/${data.key}`)) }}>Copy Link</Button>
+                        <Button variant="info w-75 mx-auto mb-3" onClick={() => { navigator.clipboard.writeText(window.location.href.replace("/host", `/contest-page/${data.key}`)); notify("Link Copied!", "success") }}>Copy Link</Button>
                         {/* navigator.clipboard.writeText(window.location.href.replace("host", `contest-page/${data.key}`)); notify("Link Copied!", "success")  */}
                         <Button variant="danger w-75 mx-auto mb-3" onClick={() => DeleteContest(data.key)}>Delete Contest</Button>
                     </Card>

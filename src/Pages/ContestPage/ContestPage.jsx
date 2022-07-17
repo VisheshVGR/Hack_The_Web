@@ -44,6 +44,11 @@ const ContestPage = ({ notify }) => {
             return
         }
 
+        if (!candidateDetails.candidateEmail.toLowerCase().match(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) {
+            notify("Please Enter valid Email Id", "warning")
+            return
+        }
+
         let userExist = false
         contestData.participated.forEach((item) => {
             if (item.candidateEmail === candidateDetails.candidateEmail) {
@@ -121,10 +126,10 @@ const ContestPage = ({ notify }) => {
                                         </ol>
                                     </li>
                                     <li>
-                                        The Quiz will consist of {contestData.questionsList.length} questions for the participants to answer.
+                                        The Quiz will consist of {contestData.questionsList.length} questions for the participants to answer. Participants can attempt each question only once so participants have no option to change their previous questions answer.
                                     </li>
                                     <li>
-                                        In order to be eligible for the rewards, a participant must register for the Quiz and complete the Quiz within the given date slot. The winners will be chosen among these participants based on whoever answers the highest number of questions correctly.
+                                        In order to be eligible for the rewards, a participant must register for the Quiz and complete the Quiz within the given date slot. The winners will be chosen among these participants based on whoever answers the highest number of questions correctly and highest score.
                                     </li>
                                     <li>
                                         Prize details for each quiz will be announced separately.
