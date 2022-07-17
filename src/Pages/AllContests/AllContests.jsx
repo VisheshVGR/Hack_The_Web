@@ -4,7 +4,7 @@ import { query, collection, onSnapshot, doc, orderBy, where, updateDoc } from "f
 import { db } from "../../Firebase/firebase-config"
 import { Button, Card, Row, Col } from "react-bootstrap";
 
-const Contests = (props) => {
+const Contests = ({ currUser, notify }) => {
     // USE STATE
     const [upcomingContests, setUpcomingContests] = useState([]);
     const [liveContests, setLiveContests] = useState([]);
@@ -12,7 +12,6 @@ const Contests = (props) => {
 
 
     const navigate = useNavigate()
-    const currUser = props.currUser
 
     // USE EFFECT
     useEffect(() => {
@@ -41,7 +40,7 @@ const Contests = (props) => {
         return (() => {
             unsubscribe()
         })
-    }, [currUser, navigate, props])
+    }, [currUser, navigate])
 
     // Enroll current user in selected contest or put them in queue according to regsitered users limit
     // const Enroll = async (data) => {
@@ -145,8 +144,9 @@ const Contests = (props) => {
                             Created By : {data.organizerName}<br />
                             Start At : {data.startingDateTime}<br />
                             Ends At : {data.endingDateTime}<br />
-                            <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
                         </Card.Body>
+                        <Button variant="outline-dark  w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
+                        <Button variant="info w-75 mx-auto mb-3" onClick={() => { navigator.clipboard.writeText(window.location.href.replace("all-contests", `contest-page/${data.key}`)); notify("Link Copied!", "success") }}>Copy Link</Button>
                     </Card>
                 </Col>
 

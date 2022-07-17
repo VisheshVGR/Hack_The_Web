@@ -21,6 +21,7 @@ import Host from "./Pages/Host/Host"
 import Profile from "./Pages/Profile/Profile";
 import ContestPage from "./Pages/ContestPage/ContestPage";
 import ContestStanding from "./Pages/ContestStanding/ContestStanding"
+import QuestionPage from "./Pages/ContestPage/QuestionPage"
 
 const App = () => {
 
@@ -63,9 +64,10 @@ const App = () => {
   const WithoutNav = () => {
     return (
       <>
-        <div style={{ color: "white" }}>
+        <Container fluid="xxl" className="m-0 p-0 mx-auto">
           <Outlet />
-        </div>
+        </Container>
+
       </>
     );
   };
@@ -76,9 +78,6 @@ const App = () => {
         <Route element={<WithNav />}>
           <Route exact path="/" element={<Home notify={notify} />} />
           <Route exact path="/all-contests" element={<AllContests currUser={currUser} notify={notify} />} />
-
-          <Route exact path="/contest-page/:contestId" element={<ContestPage notify={notify} />} />
-          <Route exact path="/contest-page/:contestId/standing/:userName" element={<ContestStanding notify={notify} />} n />
           {/* require login */}
           <Route exact path="/host" element={<Host currUser={currUser} notify={notify} />} />
           <Route exact path="/profile" element={<Profile currUser={currUser} notify={notify} />} />
@@ -86,6 +85,9 @@ const App = () => {
         </Route>
 
         <Route element={<WithoutNav />}>
+          <Route exact path="/contest-page/:contestId" element={<ContestPage notify={notify} />} />
+          <Route exact path="/contest-page/quiz/:contestId/:candidateEmail/:candidateName" element={<QuestionPage notify={notify} />} />
+          <Route exact path="/contest-page/:contestId/standing/" element={<ContestStanding notify={notify} />} />
         </Route>
       </Routes>
       <ToastContainer

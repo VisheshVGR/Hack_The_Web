@@ -6,7 +6,7 @@ const Footer = () => {
         <>
             <footer className=" bg-primary">
                 <Container fluid="xxl" className="p-5 d-flex flex-column justify-content-center align-items-center">
-                    <div className="wrapper">
+                    <div className="wrapper">   
                         <div className="button-social" onClick={() => window.open("https://www.instagram.com/vishesh22_17/")}>
                             <div className="icon">
                                 <i className="fab fa-instagram"></i>

@@ -5,20 +5,19 @@ import { query, collection, where, onSnapshot, addDoc, orderBy, serverTimestamp,
 import { db } from "../../Firebase/firebase-config"
 
 
-const Host = (props) => {
+const Host = ({ currUser, notify }) => {
 
     const [upcomingContests, setUpcomingContests] = useState([]);
     const [liveContests, setLiveContests] = useState([]);
     const [expiredContests, setExpiredContests] = useState([]);
 
     const navigate = useNavigate()
-    const currUser = props.currUser
 
     // USE EFFECT
     useEffect(() => {
         if (!currUser) {
             navigate('/')
-            props.notify("You must be Signed In to Host contests!!!", "warning")
+            notify("You must be Signed In to Host contests!!!", "warning")
             return
         }
 
@@ -56,10 +55,10 @@ const Host = (props) => {
     const DeleteContest = async (id) => {
         try {
             await deleteDoc(doc(db, "hacktheweb-contests", id))
-            props.notify("Contest deleted succesfully!!!", "success")
+            notify("Contest deleted succesfully!!!", "success")
         } catch (e) {
             console.log(e)
-            props.notify("Error deleted contest!!!", "error")
+            notify("Error deleted contest!!!", "error")
 
         }
 
@@ -80,7 +79,9 @@ const Host = (props) => {
                             Ends At : {data.endingDateTime}<br />
                         </Card.Body>
                         <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
-                        <Button variant="outline-danger w-75 mx-auto mb-3" onClick={() => DeleteContest(data.key)}>Delete Contest</Button>
+                        <Button variant="info w-75 mx-auto mb-3" onClick={() => {console.log(window.location.href.replace("host", `contest-page/${data.key}`)) }}>Copy Link</Button>
+                        {/* navigator.clipboard.writeText(window.location.href.replace("host", `contest-page/${data.key}`)); notify("Link Copied!", "success")  */}
+                        <Button variant="danger w-75 mx-auto mb-3" onClick={() => DeleteContest(data.key)}>Delete Contest</Button>
                     </Card>
                 </Col>
             </>
