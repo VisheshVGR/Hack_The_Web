@@ -46,18 +46,16 @@ const QuestionPage = ({ notify }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const nextQuestionFunction = (submit) => {
+    const nextQuestionFunction = () => {
         let noOfQue = contestData.questionsList.length
         console.log(noOfQue, questionIdx)
         if (noOfQue !== (questionIdx)) {
             setQuestionIdx(questionIdx + 1)
         }
 
-        Submit(submit)
     }
 
-    const Submit = async (toSubmit) => {
-        console.log(toSubmit)
+    const SubmitQuiz = async () => {
         let candidateScore = 0
 
         contestData.questionsList.forEach((ques) => {
@@ -81,16 +79,14 @@ const QuestionPage = ({ notify }) => {
             participated: [...contestData.participated, newUserData]
         })
 
-        console.log(toSubmit)
-        if (toSubmit) {
-            notify("Contest Submitted", "success")
-            navigate({
-                pathname: `/contest-page/${contestId}/standing/`,
-                search: createSearchParams({
-                    email: candidateEmail
-                }).toString()
-            });
-        }
+
+        notify("Contest Submitted", "success")
+        navigate({
+            pathname: `/contest-page/${contestId}/standing/`,
+            search: createSearchParams({
+                email: candidateEmail
+            }).toString()
+        });
     }
 
     return (
@@ -154,16 +150,25 @@ const QuestionPage = ({ notify }) => {
                                                             onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 4 })}
                                                         />
                                                     </Form>
-                                                    <h6 style={{ color: "grey", fontSize: "14px" }} className="my-4">(marks : {ques.marks} )</h6>
-                                                    <div className="d-flex justify-content-between w-100">
-                                                        <Button onClick={() => nextQuestionFunction()} variant="outline-success" className="" disabled={contestData.questionsList.length === idx + 1 ? true : false}>Next Question</Button>
-                                                        <Button onClick={() => nextQuestionFunction(true)} variant="danger" className="text-white px-5">Submit</Button>
+                                                    <h6 style={{ color: "grey", fontSize: "14px" }} className="my-4">( marks : {ques.marks} )</h6>
+                                                    <div className="d-flex justify-content-end w-100">
+                                                        {
+                                                            contestData.questionsList.length === idx + 1 ?
+                                                                <>
+                                                                    <Button onClick={SubmitQuiz} variant="danger" className="text-white px-5">Finish Quiz</Button>
+                                                                </> :
+                                                                <>
+                                                                    <Button onClick={nextQuestionFunction} variant="success">Next Question</Button>
+                                                                </>
+                                                        }
                                                     </div>
 
 
                                                 </>
                                             )
                                         }
+
+                                        return <></>
                                     })
                                 }
                                 {/* {

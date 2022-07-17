@@ -10,6 +10,7 @@ const ContestScore = ({ notify }) => {
     const navigate = useNavigate()
     const { contestId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
+    const [partifipatedUsers, setParticipatedUsers] = useState([])
 
     const [contestData, setContestData] = useState({})
 
@@ -18,11 +19,24 @@ const ContestScore = ({ notify }) => {
         const unsubscribe = onSnapshot(doc(db, "hacktheweb-contests", contestId), (doc) => {
             if (doc.exists()) {
                 const data = { ...doc.data(), key: doc.id }
+                console.log(data)
                 setContestData(data)
+                let participatedUserScore = data.participated
+                participatedUserScore.sort(function (a, b) {
+                    let keyA = a.candidateScore,
+                        keyB = b.candidateScore;
+                    // Compare the 2 dates
+                    if (keyA < keyB) return 1;
+                    if (keyA > keyB) return -1;
+                    return 0;
+                });
+                setParticipatedUsers(participatedUserScore)
+
             } else {
                 // doc.data() will be undefined in this case
                 console.log("No such document!");
                 setContestData({ exist: false })
+
             }
         });
 
@@ -81,7 +95,7 @@ const ContestScore = ({ notify }) => {
                                     </thead>
                                     <tbody>
                                         {
-                                            contestData.participated.map((data, idx) => {
+                                            partifipatedUsers.map((data, idx) => {
 
                                                 return (<>
                                                     <tr key={data.candidateEmail}>

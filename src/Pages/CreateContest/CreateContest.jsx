@@ -228,7 +228,7 @@ const CreateContest = ({ currUser, notify }) => {
                             </Form.Text>
                         </Form.Group>
                     </Row> */}
-                    <Button onClick={CreateContest}>Create</Button>
+                    <Button className="px-4" onClick={CreateContest}>Create Contest</Button>
                 </Form>
             </div>
         </>
