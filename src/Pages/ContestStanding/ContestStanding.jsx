@@ -80,7 +80,7 @@ const ContestScore = ({ notify }) => {
                             </div>
                             <div className="p-3 pb-5">
 
-                                {searchParams.get("email")}
+                                {/* {searchParams.get("email")} */}
                                 <h3 className="my-5 text-decoration-underline text-center"><i className="fas fa-users"></i> Standings:</h3>
 
                                 <Table responsive="xl">

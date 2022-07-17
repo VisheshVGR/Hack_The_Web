@@ -67,6 +67,7 @@ const Host = ({ currUser, notify }) => {
 
     const ContestCard = (data) => {
         data = data.data
+        console.log(new Date(data.startingDateTime))
         return (
             <>
                 <Col>
@@ -74,8 +75,8 @@ const Host = ({ currUser, notify }) => {
                         <Card.Body>
                             <Card.Title>{data.contestName}</Card.Title>
                             Created By : {data.organizerName}<br />
-                            Start At : {data.startingDateTime}<br />
-                            Ends At : {data.endingDateTime}<br />
+                            Start At : {new Date(data.startingDateTime).toLocaleDateString()}-{new Date(data.startingDateTime).toLocaleTimeString()}<br />
+                            Ends At : {new Date(data.endingDateTime).toLocaleDateString()}-{new Date(data.endingDateTime).toLocaleTimeString()}<br />
                             No. of Questions : {data.questionsList.length}<br />
                             User Attempted : {data.participated.length}<br />
                         </Card.Body>
