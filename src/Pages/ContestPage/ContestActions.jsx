@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../Firebase/firebase-config";
-import { Form, Row, Button, Card, Col } from "react-bootstrap"
+import { Form, Row, Button, Col } from "react-bootstrap"
 
 const ContestActions = ({ contestData, candidateDetails, setCandidateDetails, StartContest }) => {
     const [toDisplay, setToDisplay] = useState(1)

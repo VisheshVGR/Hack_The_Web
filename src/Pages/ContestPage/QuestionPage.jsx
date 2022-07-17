@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate, useParams, createSearchParams } from "react-router-dom"
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config";
-import { Form, Row, Button, Card, Col } from "react-bootstrap"
+import { Form, Row, Button, Col } from "react-bootstrap"
 
 const QuestionPage = ({ notify }) => {
     const navigate = useNavigate()
@@ -171,47 +171,6 @@ const QuestionPage = ({ notify }) => {
                                         return <></>
                                     })
                                 }
-                                {/* {
-                                    contestData.questionsList.map((ques, idx) => {
-                                        return (
-                                            <>
-                                                <p>Q{idx + 1}. {ques.questionDescription}?</p>
-                                                <Form>
-                                                    <Form.Check
-                                                        type="radio"
-                                                        label={ques.optionOne}
-                                                        name={idx}
-                                                        onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 1 })}
-                                                    />
-                                                    <Form.Check
-                                                        type="radio"
-                                                        label={ques.optionTwo}
-                                                        name={idx}
-                                                        onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 2 })}
-                                                    />
-                                                    <Form.Check
-                                                        type="radio"
-                                                        label={ques.optionThree}
-                                                        name={idx}
-                                                        onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 3 })}
-                                                    />
-                                                    <Form.Check
-                                                        type="radio"
-                                                        label={ques.optionFour}
-                                                        name={idx}
-                                                        onClick={() => setAnswers({ ...answers, [`answerSelectedForQues${ques.questionNo}`]: 4 })}
-                                                    />
-                                                </Form>
-                                                <h6 style={{ color: "grey", fontSize: "14px" }} className="my-4">(marks : {ques.marks} )</h6>
-
-
-
-                                            </>
-                                        )
-                                    })
-                                }
-                                <Button onClick={Submit} variant="danger" className="text-white px-5">Submit</Button> */}
-
                             </div>
 
                         </>

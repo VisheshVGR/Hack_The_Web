@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { Form, Row, Button, Card, Col } from "react-bootstrap"
-import { query, collection, where, onSnapshot, addDoc, orderBy, serverTimestamp, deleteDoc, doc } from "firebase/firestore";
+import { Row, Button, Card, Col } from "react-bootstrap"
+import { query, collection, where, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config"
 
 
@@ -67,7 +67,6 @@ const Host = ({ currUser, notify }) => {
 
     const ContestCard = (data) => {
         data = data.data
-        // console.log(data)
         return (
             <>
                 <Col>
@@ -82,15 +81,12 @@ const Host = ({ currUser, notify }) => {
                         </Card.Body>
                         <Button variant="outline-dark w-75 mx-auto mb-3" onClick={() => navigate(`/contest-page/${data.key}`)}>View Contest</Button>
                         <Button variant="info w-75 mx-auto mb-3" onClick={() => { navigator.clipboard.writeText(window.location.href.replace("/host", `/contest-page/${data.key}`)); notify("Link Copied!", "success") }}>Copy Link</Button>
-                        {/* navigator.clipboard.writeText(window.location.href.replace("host", `contest-page/${data.key}`)); notify("Link Copied!", "success")  */}
                         <Button variant="danger w-75 mx-auto mb-3" onClick={() => DeleteContest(data.key)}>Delete Contest</Button>
                     </Card>
                 </Col>
             </>
         )
     }
-
-
 
     return (
         <>

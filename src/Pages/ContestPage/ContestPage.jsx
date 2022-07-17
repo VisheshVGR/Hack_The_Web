@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config";
-import { Form, Row, Button, Card, Col } from "react-bootstrap"
+import { Row, Button, Col } from "react-bootstrap"
 
 import ContestActions from "./ContestActions"
 
@@ -27,7 +27,6 @@ const ContestPage = ({ notify }) => {
                 console.log("Document data:", docSnap.data());
                 setContestData(docSnap.data());
             } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
                 setContestData({ exist: false })
             }

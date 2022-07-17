@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Form, Row, Button, Card, Col } from "react-bootstrap"
+import { Form, Row, Button, Col } from "react-bootstrap"
 import AllQuestions from "./AllQuestions"
 
 const QuestionDetailsInitial = {
@@ -34,6 +34,8 @@ const AddQuestions = ({ questionsList, setQuestionsList, notify }) => {
         }
 
         setQuestionsList([...questionsList, questionDetails])
+        setQuestionsDetails(QuestionDetailsInitial)
+
     }
 
     return (

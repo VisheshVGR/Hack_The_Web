@@ -6,8 +6,8 @@ const Footer = () => {
         <>
             <footer className=" bg-primary">
                 <Container fluid="xxl" className="p-5 d-flex flex-column justify-content-center align-items-center">
-                    <div className="wrapper">   
-                        <div className="button-social" onClick={() => window.open("https://www.instagram.com/vishesh22_17/")}>
+                    <div className="wrapper">
+                        {/* <div className="button-social" onClick={() => window.open("https://www.instagram.com/vishesh22_17/")}>
                             <div className="icon">
                                 <i className="fab fa-instagram"></i>
                             </div>
@@ -19,9 +19,9 @@ const Footer = () => {
                                 <i className="fab fa-linkedin"></i>
                             </div>
                             <span>Linkedin</span>
-                        </div>
+                        </div> */}
 
-                        <div className="button-social" onClick={() => window.open("https://github.com/VisheshVGR")}>
+                        <div className="button-social" onClick={() => window.open("https://github.com/VisheshVGR/Hack_The_Web")}>
                             <div className="icon">
                                 <i className="fab fa-github"></i>
                             </div>

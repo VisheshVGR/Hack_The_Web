@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { useNavigate, useParams, useSearchParams } from "react-router-dom"
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useParams, useSearchParams } from "react-router-dom"
+import { doc, } from "firebase/firestore";
 import { db } from "../../Firebase/firebase-config";
-import { Form, Row, Button, Card, Col, Table } from "react-bootstrap"
+import { Row, Col, Table } from "react-bootstrap"
 
-import { query, collection, where, onSnapshot, addDoc, orderBy, serverTimestamp, deleteDoc } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 
 const ContestScore = ({ notify }) => {
-    const navigate = useNavigate()
     const { contestId } = useParams()
     const [searchParams, setSearchParams] = useSearchParams()
     const [partifipatedUsers, setParticipatedUsers] = useState([])
@@ -109,9 +108,6 @@ const ContestScore = ({ notify }) => {
                                         }
                                     </tbody>
                                 </Table>
-
-
-
                             </div>
 
                         </>
