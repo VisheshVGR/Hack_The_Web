@@ -55,7 +55,7 @@ const Home = () => {
           Join The Discussion...
         </h3>
         <div
-          className="bg-white px-2 py-1 rounded-2"
+          className="px-2 py-1 rounded-2"
           id="gimme-comments-root"
           data-gimme_comments_website_id="64c3a99758de0fe7fe3d810c"
         ></div>
